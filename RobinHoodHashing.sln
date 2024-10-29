@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobinHoodHashing", "RobinHoodHashing\RobinHoodHashing.vcxproj", "{45AF365C-6ADD-4D76-AEB5-88871E668832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Debug|x64.ActiveCfg = Debug|x64
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Debug|x64.Build.0 = Debug|x64
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Debug|x86.ActiveCfg = Debug|Win32
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Debug|x86.Build.0 = Debug|Win32
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Release|x64.ActiveCfg = Release|x64
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Release|x64.Build.0 = Release|x64
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Release|x86.ActiveCfg = Release|Win32
+		{45AF365C-6ADD-4D76-AEB5-88871E668832}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5289E75E-C09E-4C46-BC21-C763180B5EE6}
+	EndGlobalSection
+EndGlobal
