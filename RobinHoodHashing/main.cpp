@@ -34,7 +34,6 @@ Info* LoadFile(Info* hash_table);
 
 
 int main(void) {
-    system("chcp 1251");
     Info* hash_table = (Info*)malloc(HashSize * sizeof(Info));
     for (int i = 0; i < 17; i++) {
         hash_table[i].psl = 0;
@@ -50,14 +49,14 @@ int main(void) {
     data.name_key[0] = '\0';
     do {
         printMenu();
-        printf("\nВедіть число: ");
+        printf("\nEnter your choice: ");
         scanf_s("%d", &choice);
         switch (choice) {
         case 1:
             getchar();
             data = createElement();
             ptr = insert(ptr, data);
-            printf("Елемент додано до хеш-таблиці.\n\n");
+            printf("Element added.\n\n");
             break;
         case 2:
             getchar();
@@ -74,9 +73,9 @@ int main(void) {
             ptr = LoadFile(ptr);
             break;
         case 6:
-            printf("Кінець програми");
+            printf("Ending...");
         default:
-            printf("Неправильний вибір. Будь ласка, введіть число з меню.\n\n");
+            printf("Wrong choice.Try again:\n\n");
             break;
         }
     } while (choice != 6);
@@ -122,13 +121,13 @@ bool keyCompare(const char* key1, const char* key2) {
 }
 Info createElement() {
     Info data;
-    printf("Введіть ім'я: ");
+    printf("Enter name: ");
     gets_s(data.name_key);
-    printf("Введіть прізвище: ");
+    printf("Enter surname: ");
     gets_s(data.surname);
-    printf("Введіть рік народження: ");
+    printf("Enter year of birth: ");
     scanf_s("%hd", &data.birthDate);
-    printf("Введіть рік смерті: ");
+    printf("Enter year of death: ");
     scanf_s("%hd", &data.deathDate);
     return data;
 }
@@ -156,17 +155,17 @@ Info* insert(Info* ptr, Info data) {
     return ptr;
 }
 void findByName(Info* ptr, Info data, char key[]) {
-    printf("Введіть ключ(ім'я) елемента що хочете знайти: ");
+    printf("Enter name: ");
     gets_s(key, 20);
     data = findElement(ptr, key);
     if (data.name_key[0] == '1') {
-        printf("Немає такого елементу\n");
+        printf("There is no such element\n");
     }
     else {
-        printf("\nІм'я: %s\n", data.name_key);
-        printf("Прізвище: %s\n", data.surname);
-        printf("Рік народження: %d\n", data.birthDate);
-        printf("Рік смерті: %d\n", data.deathDate);
+        printf("\nNme: %s\n", data.name_key);
+        printf("Surname: %s\n", data.surname);
+        printf("Year of birth: %d\n", data.birthDate);
+        printf("Year of death: %d\n", data.deathDate);
         printf("PSL: %d\n", data.psl);
         printf("\n");
     }
@@ -184,14 +183,14 @@ Info findElement(Info* hash_table, const char* key) {
     return a;
 }
 void deleteByName(Info* ptr, char key[]) {
-    printf("Введіть ключ(ім'я) елемента що хочете видалити: ");
+    printf("Enter name: ");
     gets_s(key, 20);
     int res = deleteElement(ptr, key);
     if (res == 0) {
-        printf("Елемент успішно видалено");
+        printf("Element deleted successfully\n");
     }
     else {
-        printf("Помилка видалення");
+        printf("Something went wrong\n");
     }
 }
 int deleteElement(Info* hash_table, const char* key) {
@@ -216,28 +215,28 @@ int deleteElement(Info* hash_table, const char* key) {
 }
 void printHashTable(const Info* ptr) {
     int amountOfCollisions = 0;
-    printf("Хеш таблиця:\n");
+    printf("Hash table:\n");
     for (unsigned int i = 0; i < HashSize; i++) {
         if (ptr[i].name_key[0] != '\0') {
-            printf("Індекс %d:\n", i);
-            printf("Ім'я: %s\n", ptr[i].name_key);
-            printf("Прізвище: %s\n", ptr[i].surname);
-            printf("Рік народження: %d\n", ptr[i].birthDate);
-            printf("Рік смерті: %d\n", ptr[i].deathDate);
+            printf("Index %d:\n", i);
+            printf("Name: %s\n", ptr[i].name_key);
+            printf("Surename: %s\n", ptr[i].surname);
+            printf("Year of birth: %d\n", ptr[i].birthDate);
+            printf("Year of death: %d\n", ptr[i].deathDate);
             printf("PSL: %d\n", ptr[i].psl);
             printf("\n");
             amountOfCollisions += ptr[i].psl;
         }
     }
-    printf("Загальна кількість колізій: %d\n", amountOfCollisions);
+    printf("Total collisions amount: %d\n", amountOfCollisions);
 }
 void printMenu() {
-    printf("\n1.Вставити елемент");
-    printf("\n2.Знайти елемент");
-    printf("\n3.Видалити елемент");
-    printf("\n4.Роздрукувати таблицю");
-    printf("\n5.Загрузити всі данні з файлу");
-    printf("\n6.Кінець роботи");
+    printf("\n1.Add element");
+    printf("\n2.Find element");
+    printf("\n3.Delete element");
+    printf("\n4.Print table");
+    printf("\n5.Load data from file");
+    printf("\n6.Close program");
 }
 int findNextPrime() {
     int prime = HashSize * 2;
@@ -274,7 +273,6 @@ Info* rebuildHashTable(Info** hash_table) {
     }
     free(*hash_table);
     *hash_table = new_hash_table;
-    printf("\nТаблиця успішно перебудована\n");
 
     return *hash_table;
 }
@@ -282,12 +280,12 @@ Info* LoadFile(Info* ptr) {
     FILE* fp;
     char fname[100];
 
-    printf("Введіть шлях до файлу(у форматі Disk name:\\\\folder name\\\\file name.txt): \n");
+    printf("Enter path(format: Disk name:\\\\folder name\\\\file name.txt): \n");
     scanf_s("%99s", fname, (unsigned)_countof(fname));
 
     errno_t err = fopen_s(&fp, fname, "r");
     if (err != 0) {
-        printf("Помилка відкриття файлу %s\n", fname);
+        printf("File opening eror %s\n", fname);
         return ptr;
     }
 
@@ -333,6 +331,6 @@ Info* LoadFile(Info* ptr) {
     fclose(fp);
     data.psl = 0;
     data.name_key[0] = '\0';
-    printf("Дані успішно завантажено з файлу %s\n", fname);
+    printf("The data has been successfully loaded from the file %s\n", fname);
     return ptr;
 }
