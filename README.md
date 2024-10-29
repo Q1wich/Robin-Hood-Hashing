@@ -1,6 +1,5 @@
 # RobinHoodHashing
-Hash table written on C
-The table provides such functions as:
+Hash table written on C.The table provides such functions as:
 1. Adding an element
 2. Deleting an element
 3. Search for an element
